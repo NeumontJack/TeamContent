@@ -1,0 +1,21 @@
+﻿body {
+}
+
+.mainDiv {
+    text-align: center;
+}
+
+.innerDivs {
+    display: inline-block;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.pageTitle {
+    text-align: center;
+}
