@@ -25,15 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Include your CSS file -->
-</head>
-<body>
+
 
 <div class="login-container">
     <h2>Admin Login</h2>
@@ -54,6 +46,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php } ?>
     </form>
 </div>
-
-</body>
-</html>
