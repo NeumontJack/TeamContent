@@ -9,7 +9,7 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if the username and password are correct (You need to replace these with your actual credentials check)
+    // Check if the username and password are correct (Need to replace these with actual credentials check)
     $username = "admin";
     $password = "password";
 
@@ -25,8 +25,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="StyleSheet.css">
+</head>
+<body>
 <div class="login-container">
     <h2>Admin Login</h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -46,3 +53,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php } ?>
     </form>
 </div>
+
+</body>
+</html>
