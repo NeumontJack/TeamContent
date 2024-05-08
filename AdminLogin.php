@@ -3,7 +3,7 @@ session_start();
 
 // Check if the admin is already logged in, redirect to dashboard if true
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
-    header("Location: admin_dashboard.php");
+    header("Location: AdminDashboard.php");
     exit;
 }
 
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($_POST["username"] === $username && $_POST["password"] === $password) {
         // Authentication successful, set session variables
         $_SESSION['admin_logged_in'] = true;
-        header("Location: admin_dashboard.php");
+        header("Location: AdminDashboard.php");
         exit;
     } else {
         // Authentication failed
