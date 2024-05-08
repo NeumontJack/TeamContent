@@ -21,6 +21,10 @@ echo 'Jack';
 <p id="errorMsg"></p>
 <button id="login" onclick="loginUser()">Login</button> 
 
+<form id="loginForm" action="UserPage.php" method="post" hidden="hidden">
+    <input id="idPass" />
+</form>
+
 
 <a href="CreateUser.php">New User</a>
 
@@ -73,11 +77,17 @@ echo 'Jack';
         console.log(MyResponse)
         console.log(arrayThing)
        /* console.log(isJSON(MyResponse))*/
+        myData = JSON.parse(MyResponse);
+
+        var id = myData[0].userid;
+        var username = myData[0].username;
+        console.log(id)
+        userInfo = id + "///" + username;
 
         if (arrayThing.length < 2) {
             document.getElementById("errorMsg").innerHTML = "Incorrect Username or Password"
         } else {
-            window.open("AboutPage.php")
+            window.location.href = "UserPage.php?uId=" + userInfo;
         }
 
     }
