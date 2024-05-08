@@ -8,7 +8,7 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 }
 
 // Include database connection file
-require_once "config.php";
+require_once "root@localhost:3306";
 
 // Check if theme ID is provided in the POST request
 if (isset($_POST['theme'])) {
