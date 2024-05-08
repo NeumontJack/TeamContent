@@ -12,4 +12,7 @@
     <div class="innerDivs">
         <a class="menuLink" href="ContactPage.php">Contact</a>
     </div>
+    <div class="innerDivs">
+        <a href="AdminLogin.php">Login</a>
+    </div>
 </div>
