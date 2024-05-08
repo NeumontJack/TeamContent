@@ -39,19 +39,19 @@ $result_themes = $mysqli->query($sql_themes);
     <h3>Manage Pages:</h3>
     <ul>
         <?php while ($row = $result->fetch_assoc()) { ?>
-            <li><?php echo $row['title']; ?> - <a href="edit_page.php?id=<?php echo $row['id']; ?>">Edit</a> | <a href="delete_page.php?id=<?php echo $row['id']; ?>">Delete</a></li>
+            <li><?php echo $row['title']; ?> - <a href="EditPage.php?id=<?php echo $row['id']; ?>">Edit</a> | <a href="DeletePage.php?id=<?php echo $row['id']; ?>">Delete</a></li>
         <?php } ?>
     </ul>
     
     <h3>Manage Categories:</h3>
     <ul>
         <?php while ($row_category = $result_categories->fetch_assoc()) { ?>
-            <li><?php echo $row_category['name']; ?> - <a href="edit_category.php?id=<?php echo $row_category['id']; ?>">Edit</a> | <a href="delete_category.php?id=<?php echo $row_category['id']; ?>">Delete</a></li>
+            <li><?php echo $row_category['name']; ?> - <a href="EditCategory.php?id=<?php echo $row_category['id']; ?>">Edit</a> | <a href="DeleteCategory.php?id=<?php echo $row_category['id']; ?>">Delete</a></li>
         <?php } ?>
     </ul>
     
     <h3>Choose Theme:</h3>
-    <form action="update_theme.php" method="post">
+    <form action="UpdateTheme.php" method="post">
         <select name="theme">
             <?php while ($row_theme = $result_themes->fetch_assoc()) { ?>
                 <option value="<?php echo $row_theme['id']; ?>"><?php echo $row_theme['name']; ?></option>
