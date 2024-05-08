@@ -19,3 +19,22 @@
 .pageTitle {
     text-align: center;
 }
+
+.usersName {
+    text-align: center;
+}
+
+.proPic {
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.aboutMe {
+    text-align: center;
+}
+
+.aboutMeTitle {
+    text-align: center;
+}

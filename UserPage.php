@@ -2,18 +2,26 @@
 
 include("HeaderPage.php");
 include("LoggedInMenu.php");
+session_start();
+if (!isset($_SESSION['userInfo'])) {
+    $_SESSION['userInfo'] = $_GET["uId"];
+}
 
-$id = $_GET["uId"];
+
+$id = $_SESSION['userInfo'];
 
 //$myUserInfo = explode("///", $id);
 
 ?>
 
-<h2 id="username"></h2>
+<h2 id="username" class="usersName"></h2>
 
-<img id="profilepic"/>
+<img id="profilepic" class="proPic"/>
+<button>Update Profile Picture</button>
 
-<p id="about"></p>
+<h3 class="aboutMeTitle">About Me</h3>
+<p id="about" class="aboutMe"></p>
+<button>Update About Me</button>
 
 
 <script>

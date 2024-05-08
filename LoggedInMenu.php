@@ -7,6 +7,6 @@
         <a class="menuLink" href="UserPage.php">Home Page</a>
     </div>
     <div class="innerDivs">
-        <a class="menuLink" href="UserPage.php">Search</a>
+        <a class="menuLink" href="SearchUsers.php">Search</a>
     </div>
 </div>

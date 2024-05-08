@@ -3,11 +3,16 @@
 include("HeaderPage.php");
 include("Menu.php");
 
+$location = "UserPage.php";
+$stat = "didnt work";
+
+if (isset($_SESSION['userInfo'])) {
+    header("Location: UserPage.php");
+}
+
 $PageTitle = "Home Page";
 
-echo 'Hello World!';
-
-echo 'Jack';
+echo $stat;
 
 ?>
 
