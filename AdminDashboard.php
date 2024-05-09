@@ -24,22 +24,12 @@ $mysqli = dbconnect();
 $sql_themes = "SELECT * FROM teamcontent.themes";
 $result_themes = $mysqli->query($sql_themes);
 
-// Retrieve the theme ID from the database for the logged-in admin
-$admin_id = $_SESSION['admin_id']; // Assuming you store admin_id in the session upon login
-$sql = "SELECT theme_id FROM admins WHERE admin_id = ?";
-if ($stmt = $mysqli->prepare($sql)) {
-    $stmt->bind_param("i", $admin_id);
-    $stmt->execute();
-    $stmt->bind_result($theme_id);
-    $stmt->fetch();
-    $stmt->close();
-}
-
 // Determine the CSS file based on the retrieved theme ID
 $css_file = '';
+$theme_id = $_SESSION['theme'];
 switch ($theme_id) {
     case 1:
-        $css_file = 'StyleSheet.css';
+        $css_file = 'theme1.css';
         break;
     case 2:
         $css_file = 'theme2.css';
@@ -48,9 +38,11 @@ switch ($theme_id) {
         $css_file = 'theme3.css';
         break;
     default:
-        $css_file = 'default.css'; // Default theme
+        $css_file = 'StyleSheet.css';
         break;
 }
+
+echo $_SESSION['theme'];
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +51,7 @@ switch ($theme_id) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="StyleSheet.css">
+    <link rel="stylesheet" href="<?php echo $css_file ?>">
 </head>
 <body>
 

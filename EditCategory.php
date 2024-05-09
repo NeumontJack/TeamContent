@@ -43,6 +43,7 @@ if ($stmt = $mysqli->prepare($sql)) {
         }
     } else {
         echo "Error executing SQL statement.";
+        exit;
     }
 
     // Close statement
@@ -52,7 +53,7 @@ if ($stmt = $mysqli->prepare($sql)) {
 // Handle form submission to update category name
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
-    $name = $_POST["name"];
+    $name = htmlspecialchars($_POST["name"]); // Sanitize input
 
     // Update category name in the database
     $sql_update = "UPDATE categories SET name = ? WHERE id = ?";
@@ -67,6 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         } else {
             echo "Error updating category name.";
+            exit;
         }
 
         // Close statement
@@ -89,17 +91,14 @@ $mysqli->close();
 <body>
 
 <div class="edit-category-container">
-    <h2>Edit Category: <?php echo $category['name']; ?></h2>
+    <h2>Edit Category: <?php echo htmlspecialchars($category['name']); ?></h2>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $category_id; ?>" method="post">
         <div class="form-group">
             <label>Name</label>
-            <input type="text" name="name" value="<?php echo $category['name']; ?>" class="form-control">
+            <input type="text" name="name" value="<?php echo htmlspecialchars($category['name']); ?>" class="form-control">
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Save">
         </div>
     </form>
-</div>
-
-</body>
-</html>
+</

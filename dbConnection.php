@@ -15,3 +15,5 @@ function dbconnect()
 
     return $dbConn;
 }
+
+?>
