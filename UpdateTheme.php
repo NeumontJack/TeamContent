@@ -8,7 +8,9 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 }
 
 // Include database connection file
-require_once "root@localhost:3306";
+require_once "dbConnection.php";
+
+$mysqli = dbconnect();
 
 // Check if theme ID is provided in the POST request
 if (isset($_POST['theme'])) {
@@ -21,14 +23,17 @@ if (isset($_POST['theme'])) {
         // Bind variables to the prepared statement as parameters
         $stmt->bind_param("ii", $theme_id, $_SESSION['admin_id']);
 
-        // Attempt to execute the prepared statement
-        if ($stmt->execute()) {
-            // Theme preference updated successfully
-            header("Location: AdminDashboard.php");
-            exit;
-        } else {
-            echo "Error updating theme preference.";
-        }
+        //// Attempt to execute the prepared statement
+        //if ($stmt->execute()) {
+        //    // Theme preference updated successfully
+        //    header("Location: AdminDashboard.php");
+        //    exit;
+        //} else {
+        //    echo "Error updating theme preference.";
+        //}
+
+        echo $theme_id;
+
 
         // Close statement
         $stmt->close();

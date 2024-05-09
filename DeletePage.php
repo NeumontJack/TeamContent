@@ -8,7 +8,9 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 }
 
 // Include database connection file
-require_once "root@localhost:3306";
+require_once "dbConnection.php";
+
+$mysqli = dbconnect();
 
 // Check if page ID is provided in the URL
 if (!isset($_GET['id'])) {
