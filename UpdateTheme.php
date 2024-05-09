@@ -10,7 +10,7 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 // Check if the logged-in user is an admin
 if ($_SESSION['user_type'] !== 'admin') {
     // Redirect to dashboard or display an error message
-    header("Location: admin_dashboard.php");
+    header("Location: AdminDashboard.php");
     exit;
 }
 

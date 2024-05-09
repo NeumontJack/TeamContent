@@ -23,6 +23,34 @@ $mysqli = dbconnect();
 // Query to fetch existing themes
 $sql_themes = "SELECT * FROM teamcontent.themes";
 $result_themes = $mysqli->query($sql_themes);
+
+// Retrieve the theme ID from the database for the logged-in admin
+$admin_id = $_SESSION['admin_id']; // Assuming you store admin_id in the session upon login
+$sql = "SELECT theme_id FROM admins WHERE admin_id = ?";
+if ($stmt = $mysqli->prepare($sql)) {
+    $stmt->bind_param("i", $admin_id);
+    $stmt->execute();
+    $stmt->bind_result($theme_id);
+    $stmt->fetch();
+    $stmt->close();
+}
+
+// Determine the CSS file based on the retrieved theme ID
+$css_file = '';
+switch ($theme_id) {
+    case 1:
+        $css_file = 'StyleSheet.css';
+        break;
+    case 2:
+        $css_file = 'theme2.css';
+        break;
+    case 3:
+        $css_file = 'theme3.css';
+        break;
+    default:
+        $css_file = 'default.css'; // Default theme
+        break;
+}
 ?>
 
 <!DOCTYPE html>
