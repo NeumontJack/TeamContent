@@ -7,6 +7,13 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
     exit;
 }
 
+// Check if the logged-in user is an admin
+if ($_SESSION['user_type'] !== 'admin') {
+    // Redirect to dashboard or display an error message
+    header("Location: admin_dashboard.php");
+    exit;
+}
+
 // Include database connection file
 require_once "dbConnection.php";
 
