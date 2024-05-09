@@ -8,11 +8,14 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 }
 
 // Include database connection file
-require_once "root@localhost:3306";
+require_once "dbConnection.php";
+
+$mysqli = dbconnect();
 
 // Check if page ID is provided in the URL
-if (!isset($_GET['id'])) {
-    header("Location: AdminDashboard.php");
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    // Handle the case where the page ID is not provided or invalid
+    echo "Invalid page ID";
     exit;
 }
 
@@ -41,6 +44,7 @@ if ($stmt = $mysqli->prepare($sql)) {
         }
     } else {
         echo "Error executing SQL statement.";
+        exit;
     }
 
     // Close statement
@@ -50,7 +54,7 @@ if ($stmt = $mysqli->prepare($sql)) {
 // Handle form submission to update page content
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve form data
-    $content = $_POST["content"];
+    $content = htmlspecialchars($_POST["content"]); // Sanitize input
 
     // Update page content in the database
     $sql_update = "UPDATE pages SET content = ? WHERE id = ?";
@@ -65,6 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         } else {
             echo "Error updating page content.";
+            exit;
         }
 
         // Close statement
@@ -87,17 +92,5 @@ $mysqli->close();
 <body>
 
 <div class="edit-page-container">
-    <h2>Edit Page: <?php echo $page['title']; ?></h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $page_id; ?>" method="post">
-        <div class="form-group">
-            <label>Content</label>
-            <textarea name="content" rows="10" cols="50"><?php echo $page['content']; ?></textarea>
-        </div>
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Save">
-        </div>
-    </form>
-</div>
-
-</body>
-</html>
+    <h2>Edit Page: <?php echo htmlspecialchars($page['title']); ?></h2>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?id=' . $pa

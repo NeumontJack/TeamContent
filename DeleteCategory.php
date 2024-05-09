@@ -8,11 +8,14 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 }
 
 // Include database connection file
-require_once "root@localhost:3306";
+require_once "dbConnection.php";
+
+$mysqli = dbconnect();
 
 // Check if category ID is provided in the URL
-if (!isset($_GET['id'])) {
-    header("Location: AdminDashboard.php");
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    // Handle the case where the category ID is not provided or invalid
+    echo "Invalid category ID";
     exit;
 }
 
@@ -31,6 +34,7 @@ if ($stmt = $mysqli->prepare($sql)) {
         header("Location: AdminDashboard.php");
         exit;
     } else {
+        // Handle the case where there's an error with the database query
         echo "Error deleting category.";
     }
 
@@ -40,4 +44,5 @@ if ($stmt = $mysqli->prepare($sql)) {
 
 // Close connection
 $mysqli->close();
+
 ?>

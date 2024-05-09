@@ -10,8 +10,8 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if the username and password are correct (Need to replace these with actual credentials check)
-    $username = "admin";
-    $password = "password";
+    $username = "jbursi";
+    $password = "1234";
 
     if ($_POST["username"] === $username && $_POST["password"] === $password) {
         // Authentication successful, set session variables
