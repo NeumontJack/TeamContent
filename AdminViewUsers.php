@@ -1,6 +1,7 @@
 <?php
 
 include("HeaderPage.php");
+include("AdminMenu.php");
 
 $id = $_GET["uId"];
 

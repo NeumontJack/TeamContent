@@ -1,5 +1,6 @@
 <?php
 session_start();
+include("AdminMenu.php");
 
 // Check if admin is logged in, redirect to login page if not
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {

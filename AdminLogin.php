@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+include("AdminMenu.php");
+
 // Check if the admin is already logged in, redirect to dashboard if true
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
     header("Location: AdminDashboard.php");
