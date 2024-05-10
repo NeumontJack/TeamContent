@@ -1,0 +1,21 @@
+﻿body {
+    background-color: #333;
+    color: #fff;
+}
+
+h1, h2, h3 {
+    color: #fff;
+}
+
+a {
+    color: #17a2b8;
+}
+
+.btn {
+    background-color: #17a2b8;
+    color: #fff;
+}
+
+    .btn:hover {
+        background-color: #138496;
+    }

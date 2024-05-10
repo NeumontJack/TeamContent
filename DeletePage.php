@@ -10,9 +10,12 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 // Include database connection file
 require_once "dbConnection.php";
 
+$mysqli = dbconnect();
+
 // Check if page ID is provided in the URL
-if (!isset($_GET['id'])) {
-    header("Location: AdminDashboard.php");
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    // Handle the case where the page ID is not provided or invalid
+    echo "Invalid page ID";
     exit;
 }
 

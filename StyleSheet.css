@@ -1,14 +1,10 @@
 ﻿body {
+    background-color: #fff;
+    color: #000;
 }
 
-.mainDiv {
-    text-align: center;
-}
-
-.innerDivs {
-    display: inline-block;
-    margin-left: 1%;
-    margin-right: 1%;
+h1, h2, h3 {
+    color: #000;
 }
 
 .menuLink {
@@ -16,8 +12,13 @@
     color: black;
 }
 
-.pageTitle {
-    text-align: center;
+a {
+    color: #007bff;
+}
+
+.btn {
+    background-color: #007bff;
+    color: #fff;
 }
 
 .usersName {
@@ -42,3 +43,6 @@
 .allUsers {
 
 }
+    .btn:hover {
+        background-color: #0056b3;
+    }

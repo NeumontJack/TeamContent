@@ -9,21 +9,43 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
     exit;
 }
 
-// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if the username and password are correct (Need to replace these with actual credentials check)
-    $username = "admin";
-    $password = "password";
+    // Include database connection file
+    require_once "dbConnection.php";
+    $mysqli = dbconnect();
 
-    if ($_POST["username"] === $username && $_POST["password"] === $password) {
-        // Authentication successful, set session variables
-        $_SESSION['admin_logged_in'] = true;
-        header("Location: AdminDashboard.php");
-        exit;
-    } else {
-        // Authentication failed
-        $login_err = "Invalid username or password.";
+    // Sanitize input
+    $username = mysqli_real_escape_string($mysqli, $_POST["username"]);
+    $password = mysqli_real_escape_string($mysqli, $_POST["password"]);
+
+    // Query the database for the provided username and password
+    $sql = "SELECT * FROM admins WHERE username = ? AND password = ?";
+    if ($stmt = $mysqli->prepare($sql)) {
+        // Bind parameters
+        $stmt->bind_param("ss", $username, $password);
+        // Execute query
+        $stmt->execute();
+        // Store result
+        $result = $stmt->get_result();
+        // Check if a row exists
+        if ($result->num_rows == 1) {
+            // Authentication successful, set session variables
+            $_SESSION['admin_logged_in'] = true;
+            // Fetch the admin ID and store it in the session for later use
+            $row = $result->fetch_assoc();
+            $_SESSION['admin_id'] = $row['admin_id'];
+            // Redirect to the dashboard
+            header("Location: AdminDashboard.php");
+            exit;
+        } else {
+            // Authentication failed
+            $login_err = "Invalid username or password.";
+        }
+        // Close statement
+        $stmt->close();
     }
+    // Close connection
+    $mysqli->close();
 }
 ?>
 
