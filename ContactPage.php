@@ -2,6 +2,7 @@
 
 include("HeaderPage.php");
 include("Menu.php");
+include("ContactMenu.php");
 $PageTitle = "Contact Page";
 
 ?>

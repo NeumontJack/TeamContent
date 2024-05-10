@@ -8,7 +8,7 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 }
 
 // Include database connection file
-require_once "root@localhost:3306";
+require_once "dbConnection.php";
 
 // Query to fetch existing pages
 $sql = "SELECT * FROM pages";

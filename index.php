@@ -2,7 +2,7 @@
 
 include("HeaderPage.php");
 include("Menu.php");
-
+session_start();
 $location = "UserPage.php";
 $stat = "didnt work";
 
@@ -11,8 +11,6 @@ if (isset($_SESSION['userInfo'])) {
 }
 
 $PageTitle = "Home Page";
-
-echo $stat;
 
 ?>
 
@@ -84,14 +82,15 @@ echo $stat;
        /* console.log(isJSON(MyResponse))*/
         myData = JSON.parse(MyResponse);
 
-        var id = myData[0].userid;
-        var username = myData[0].username;
-        console.log(id)
-        userInfo = id + "///" + username;
+        
 
         if (arrayThing.length < 2) {
             document.getElementById("errorMsg").innerHTML = "Incorrect Username or Password"
         } else {
+            var id = myData[0].userid;
+            var username = myData[0].username;
+            console.log(id)
+            var userInfo = id + "///" + username;
             window.location.href = "UserPage.php?uId=" + userInfo;
         }
 

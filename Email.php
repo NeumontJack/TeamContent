@@ -1,20 +1,9 @@
 <?php
-
 include("HeaderPage.php");
 include("Menu.php");
-include("AboutMenu.php");
-$PageTitle = "About Us";
+include("ContactMenu.php");
+$PageTitle = "Emails";
 
 ?>
 
 <h1 class="pageTitle"><?php echo $WebTitle . "- " . $PageTitle ?></h1>
-
-
-
-
-
-
-<?php
-
-include("FooterPage.php");
-?>

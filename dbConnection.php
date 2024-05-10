@@ -59,5 +59,45 @@ function getUserPage($dbConn, $info) {
     return mysqli_query($dbConn, $query);
 }
 
+function getUserPageAdmin($dbConn, $info) {
+
+    $query = "SELECT JSON_OBJECT ('username', username, 'pic', profilepic, 'about', aboutme)
+            FROM webdb.userspage WHERE userId = '" . $info . "';";
+
+    return mysqli_query($dbConn, $query);
+}
+
+function getAllUsers($dbConn) {
+
+    $query = "SELECT JSON_OBJECT ( 'username', username, 'pic', profilepic, 'id', id)
+                FROM webdb.userspage;";
+
+    return mysqli_query($dbConn, $query);
+}
+
+function deleteUser($dbConn, $data) {
+
+    $query = "DELETE FROM userspage WHERE userspage.id= '" . $data . "';";
+
+    return mysqli_query($dbConn, $query);
+}
+
+function updatePic($dbConn, $data) {
+
+    $infolist = (explode("///", $data));
+
+    $query = "UPDATE userspage SET userspage.profilepic= '" . $infolist[2] ."' WHERE userspage.userId= '" . $infolist[0] ."';";
+
+    return mysqli_query($dbConn, $query);
+}
+
+function updateAbout($dbConn, $data) {
+    $infolist = (explode("///", $data));
+
+    $query = "UPDATE userspage SET userspage.aboutme= '" . $infolist[2] . "' WHERE userspage.userId= '" . $infolist[0] . "';";
+
+    return mysqli_query($dbConn, $query);
+}
+
 ?>
 
