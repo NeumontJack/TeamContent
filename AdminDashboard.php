@@ -24,6 +24,29 @@ $mysqli = dbconnect();
 $sql_themes = "SELECT * FROM teamcontent.themes";
 $result_themes = $mysqli->query($sql_themes);
 
+// If a theme change request is submitted, update the database with the selected theme
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['theme'])) {
+    $theme_id = $_POST['theme'];
+    $admin_id = $_SESSION['admin_id']; // Assuming you have an admin ID stored in the session
+    $update_sql = "UPDATE admins SET theme_id = ? WHERE admin_id = ?";
+    $stmt = $mysqli->prepare($update_sql);
+    $stmt->bind_param("ii", $theme_id, $admin_id);
+    $stmt->execute();
+    // Update the session with the new theme ID
+    $_SESSION['theme'] = $theme_id;
+}
+
+// Retrieve the admin's theme preference from the database and store it in the session
+$admin_id = $_SESSION['admin_id']; // Assuming you have an admin ID stored in the session
+$select_sql = "SELECT theme_id FROM admins WHERE admin_id = ?";
+$stmt = $mysqli->prepare($select_sql);
+$stmt->bind_param("i", $admin_id);
+$stmt->execute();
+$stmt->bind_result($theme_id);
+$stmt->fetch();
+$_SESSION['theme'] = $theme_id;
+$stmt->close();
+
 // Determine the CSS file based on the retrieved theme ID
 $css_file = '';
 $theme_id = $_SESSION['theme'];
